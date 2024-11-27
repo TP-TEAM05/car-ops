@@ -1,0 +1,1 @@
+ACTION=="remove", SUBSYSTEM=="block", KERNEL=="sd*", RUN+="/usr/bin/systemd-umount --no-block --collect  /media/RECO_CONFIG"
