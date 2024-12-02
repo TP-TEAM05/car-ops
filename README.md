@@ -7,7 +7,7 @@ Repository containing scripts that runs on the car controller - Raspberry Pi
 
 ```bash
 eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa
+~/.ssh/id_ed25519
 ```
 
 ### Config Scripts
@@ -16,8 +16,9 @@ ssh-add ~/.ssh/id_rsa
 
 ### UDEV Rules
 
-`99-reco-config.rules` - contains udev rules to automount flash_drive RECO_CONFIG
-`99-reco-config-unmount.rules` - contains udev rules to unmount flash_drive RECO_CONFIG
+- `99-reco-config.rules` - contains udev rules to automount flash_drive 
+
+- `99-reco-config-unmount.rules` - contains udev rules to unmount flash_drive RECO_CONFIG
 
 #### UDEV Rules Installation
 
