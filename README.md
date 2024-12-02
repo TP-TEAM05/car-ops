@@ -1,6 +1,11 @@
 # CarOps
 Repository containing scripts that runs on the car controller - Raspberry Pi
 
+## Prerequisities
+- Raspberry Pi 4 is required
+- Ubuntu 22.04 is currently only supported version
+- ROS2 Humble is currently only supported version
+
 ## Base setup
 
 ### SSH Setup (GitHub)
