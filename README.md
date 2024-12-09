@@ -101,3 +101,13 @@ sudo cp ~/car-ops/99-reco-config-unmount.rules /etc/udev/rules.d/
 ```bash
  sudo udevadm control --reload-rules && sudo udevadm trigger
 ```
+
+### Python Setup
+
+- Install pip3
+
+```bash
+sudo apt install python3-pip
+sudo pip3 install pypyr
+```
+
