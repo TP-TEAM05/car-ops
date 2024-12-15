@@ -1,0 +1,35 @@
+# Pypyr pipeline definition file
+# This pipeline will log errors to Sentry if any step fails.
+
+steps:
+  - name: pypyr.steps.py
+    comment: "Initialize Sentry SDK for error logging."
+    in:
+      py: |
+        import sentry_sdk
+        sentry_sdk.init(
+            dsn="https://60b54799df74ddab5585ba77f35f37ab@o4508080703864832.ingest.de.sentry.io/4508363861655632",
+            environment="production",
+            traces_sample_rate=1.0
+        )
+
+  # Run the steps
+  - name: pypyr.steps.pype
+    comment: Run the ci pipeline
+    in:
+      pype:
+        name: pipeline
+
+  # Error handling step
+  - name: pypyr.steps.py
+    comment: "Log errors to Sentry if any step fails."
+    runOnError: True
+    in:
+      py: |
+        import sentry_sdk
+        context = globals().get("context", {})
+        error_info = context.get("error", {})
+        exception = error_info.get("exception", None)
+        if exception:
+            sentry_sdk.capture_exception(exception)
+            print("Logged error to Sentry:", exception)

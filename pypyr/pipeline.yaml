@@ -1,0 +1,37 @@
+# Pypyr pipeline definition file
+# This pipeline will log errors to Sentry if any step fails.
+
+steps:
+  - name: pypyr.steps.cmd
+    comment: "Stop all running ROS2 processes"
+    in:
+      cmd:
+        run: ./reco-stop.sh
+        cwd: /home/ubuntu
+        stdout: /tmp/reco/ros-actions.txt
+        stderr: /tmp/reco/ros-errors.txt
+        append: False
+
+  - name: pypyr.steps.cmd
+    comment: Pull latest ROS2 code from GitHub
+    in:
+      cmd:
+        run: git pull
+        cwd: /home/ubuntu/ros2_ws
+        stdout: /tmp/reco/git-actions.txt
+        stderr: /tmp/reco/git-errors.txt
+
+  - name: pypyr.steps.cmd
+    comment: Build ROS2 code
+    in:
+      cmd:
+        run: colcon build
+        cwd: /home/ubuntu/ros2_ws
+        stdout: /tmp/reco/ros-actions.txt
+        stderr: /tmp/reco/ros-errors.txt
+  - name: pypyr.steps.cmd
+    comment: Run ROS2 code. This step will run the ROS2 code in a detached screen session.
+    in:
+      cmd:
+        run: screen -dmS ros2_ws  bash -c "/home/ubuntu/reco-run.sh 192.168.20.72 4040; exec bash"
+        cwd: /home/ubuntu
