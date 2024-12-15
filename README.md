@@ -93,6 +93,12 @@ sudo cp ~/car-ops/99-reco-config.rules /etc/udev/rules.d/
 sudo cp ~/car-ops/99-reco-config-unmount.rules /etc/udev/rules.d/
 ```
 
+- `99-serial.rules` - contains udev rules to set permissions for serial devices
+
+```bash
+sudo cp ~/car-ops/99-serial.rules /etc/udev/rules.d/
+```
+
 #### UDEV Rules Installation
 
 - Copy the udev rules to /etc/udev/rules.d/
@@ -105,9 +111,11 @@ sudo cp ~/car-ops/99-reco-config-unmount.rules /etc/udev/rules.d/
 ### Python Setup
 
 - Install pip3
+- Install pypyr and sentry-sdk
 
 ```bash
 sudo apt install python3-pip
 sudo pip3 install pypyr
+sudo pip3 install sentry-sdk
 ```
 

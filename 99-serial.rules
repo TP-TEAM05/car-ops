@@ -1,0 +1,1 @@
+KERNEL=="tty*", MODE="0666", GROUP="dialout"
