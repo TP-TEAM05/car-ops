@@ -19,6 +19,21 @@ steps:
     in:
       pype:
         name: pipeline
+  
+  - name: pypyr.steps.py
+    comment: Ensure lock file exists
+    in:
+      py: |
+        import os
+        
+        lock_file_path = "/var/run/reco_config_monitor.lock"
+        
+        if not os.path.exists(lock_file_path):
+            with open(lock_file_path, "w") as lock_file:
+                lock_file.write("")  # Create an empty file
+            print(f"Lock file created at: {lock_file_path}")
+        else:
+            print(f"Lock file already exists: {lock_file_path}")
 
   # Error handling step
   - name: pypyr.steps.py
