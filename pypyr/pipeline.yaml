@@ -8,9 +8,9 @@ steps:
       cmd:
         run: ./reco-stop.sh
         cwd: /home/ubuntu
-        stdout: /tmp/reco/ros-actions.txt
-        stderr: /tmp/reco/ros-errors.txt
-        append: False
+        stdout: /tmp/log.txt
+        stderr: /tmp/log.txt
+        append: True
 
   - name: pypyr.steps.cmd
     comment: Pull latest ROS2 code from GitHub
@@ -18,8 +18,9 @@ steps:
       cmd:
         run: git pull
         cwd: /home/ubuntu/ros2_ws
-        stdout: /tmp/reco/git-actions.txt
-        stderr: /tmp/reco/git-errors.txt
+        stdout: /tmp/log.txt
+        stderr: /tmp/log.txt
+        append: True
 
   - name: pypyr.steps.cmd
     comment: Build ROS2 code
@@ -27,8 +28,9 @@ steps:
       cmd:
         run: colcon build
         cwd: /home/ubuntu/ros2_ws
-        stdout: /tmp/reco/ros-actions.txt
-        stderr: /tmp/reco/ros-errors.txt
+        stdout: /tmp/log.txt
+        stderr: /tmp/log.txt
+        append: True
   - name: pypyr.steps.cmd
     comment: Run ROS2 code. This step will run the ROS2 code in a detached screen session.
     in:
