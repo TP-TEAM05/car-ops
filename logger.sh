@@ -3,8 +3,7 @@
 LOG_DIR="/tmp/reco"
 mkdir -pm 777 "$LOG_DIR"
 
-EPOCH=$(date +%s)
-LOG_FILE="$LOG_DIR/mount_log_$EPOCH.txt"
+LOG_FILE="$LOG_DIR/log.txt"
 
 export SENTRY_DSN="https://60b54799df74ddab5585ba77f35f37ab@o4508080703864832.ingest.de.sentry.io/4508363861655632"
 
@@ -16,7 +15,7 @@ log_message() {
     # Log locally
     echo "$(date +'%Y-%m-%d %H:%M:%S') - $message" >> "$LOG_FILE"
 
-    sentry-cli send-event --message "$message" --level "$level"
+    SENTRY_DSN="$SENTRY_DSN" sentry-cli send-event --message "$message" --log-level "$level"
     
 }
 
