@@ -1,0 +1,13 @@
+[Unit]
+Description=Monitor /media/RECO_CONFIG and run script if mounted
+After=local-fs.target
+ConditionPathIsDirectory=/media/RECO_CONFIG
+
+[Service]
+User=ubuntu
+Group=ubuntu
+Type=oneshot
+ExecStart=/usr/local/bin/reco_config_monitor.sh
+
+[Install]
+WantedBy=multi-user.target

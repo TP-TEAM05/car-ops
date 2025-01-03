@@ -19,6 +19,9 @@ log_async() {
 
 # Check if the label is RECO_CONFIG
 LABEL=$(blkid -o value -s LABEL "$DEVICE")
+
+rm -f /reco/run/reco_config_monitor.lock
+
 if [ "$LABEL" == "RECO_CONFIG" ]; then
     log_async "Mounting USB drive with label RECO_CONFIG..."
 
@@ -27,7 +30,7 @@ if [ "$LABEL" == "RECO_CONFIG" ]; then
         -o gid=$(getent group usbmount | awk -F: '{print $3}'),umask=000 --collect "$DEVICE" "$MOUNT_POINT"
 
     # Poll the mount point to verify success
-    
+
 else
     log_async "USB drive label does not match RECO_CONFIG. Skipping." "warning"
 fi

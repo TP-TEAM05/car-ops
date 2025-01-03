@@ -1,0 +1,8 @@
+[Unit]
+Description=Monitor /media/RECO_CONFIG for mount events
+
+[Path]
+PathExists=/media/RECO_CONFIG
+
+[Install]
+WantedBy=multi-user.target

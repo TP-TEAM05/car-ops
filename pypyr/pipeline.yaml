@@ -1,30 +1,47 @@
-# Pypyr pipeline definition file
+# pypyr pipeline definition file
 # This pipeline will log errors to Sentry if any step fails.
 
 steps:
+  - name: pypyr.steps.set
+    comment: "Set IP and PORT"
+    in:
+      set:
+        IP: 192.168.20.72
+        PORT: 4040
   - name: pypyr.steps.cmd
     comment: "Stop all running ROS2 processes"
     in:
       cmd:
         run: ./reco-stop.sh
         cwd: /home/ubuntu
-
-  # - name: pypyr.steps.cmd
-  #   comment: Pull latest ROS2 code from GitHub
-  #   in:
-  #     cmd:
-  #       run: git pull
-  #       cwd: /home/ubuntu/ros2_ws
+        stdout: /reco/log/reco-stop.log
+        stderr: /reco/log/reco-stop.log
 
   - name: pypyr.steps.cmd
-    comment: Build ROS2 code
+    comment: "Pull latest ROS2 code from GitHub"
+    in:
+      cmd:
+        run: git pull
+        cwd: /home/ubuntu/ros2_ws
+        stdout: /reco/log/git-pull.log
+        stderr: /reco/log/git-pull.log
+
+  - name: pypyr.steps.cmd
+    comment: "Build ROS2 code"
     in:
       cmd:
         run: colcon build
         cwd: /home/ubuntu/ros2_ws
+        stdout: /reco/log/colcon-build.log
+        stderr: /reco/log/colcon-build.log
+
   - name: pypyr.steps.cmd
-    comment: Run ROS2 code. This step will run the ROS2 code in a detached screen session.
+    comment: "Write config udp_client_config"
     in:
       cmd:
-        run: screen -dmS ros2_ws bash -c "/home/ubuntu/reco-run.sh 192.168.20.72 4040 -v; exec bash"
+        run: >
+          echo "{IP}" > /home/ubuntu/ros2_ws/src/car_to_backend/src/udp_client_config &&
+          echo "{PORT}" >> /home/ubuntu/ros2_ws/src/car_to_backend/src/udp_client_config
         cwd: /home/ubuntu
+        stdout: /reco/log/config-write.log
+        stderr: /reco/log/config-write.log

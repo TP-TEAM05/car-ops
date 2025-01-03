@@ -1,0 +1,17 @@
+[Unit]
+Description=System-wide ROS2 ReCo run after config monitor
+
+[Service]
+Type=forking
+
+# Run under user "ubuntu" and group "ubuntu"
+User=ubuntu
+Group=ubuntu
+ExecStart=/usr/bin/screen -dmS ros2_ws bash -c "/home/ubuntu/car-ops/ros2/reco-run.sh; exec bash"
+
+# Keep the service 'active' after starting, so that systemd doesn't think it's finished
+RemainAfterExit=yes
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

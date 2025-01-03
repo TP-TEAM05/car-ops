@@ -26,7 +26,7 @@ steps:
       py: |
         import os
         
-        lock_file_path = "/var/run/reco_config_monitor.lock"
+        lock_file_path = "/reco/run/reco_config_monitor.lock"
         
         if not os.path.exists(lock_file_path):
             with open(lock_file_path, "w") as lock_file:

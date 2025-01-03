@@ -8,6 +8,15 @@ Repository containing scripts that runs on the car controller - Raspberry Pi
 
 ## Base setup
 
+### System setup
+- Update the system using `sudo apt update && sudo apt upgrade`
+```bash
+sudo mkdir /reco
+sudo mkdir /reco/run
+sudo mkdir /reco/log
+sudo chown -R ubuntu:ubuntu /reco
+```
+
 ### SSH Setup (GitHub)
 - Copy the SSH key pair to the Raspberry Pi /home/ubuntu/.ssh/
 - Add the SSH key to the ssh-agent
@@ -118,5 +127,23 @@ sudo cp ~/car-ops/99-serial.rules /etc/udev/rules.d/
 sudo apt install python3-pip
 sudo pip3 install pypyr
 sudo pip3 install sentry-sdk
+```
+
+### Systemd setup
+
+Copy the service files to `/etc/systemd/system/`
+
+Restart the systemd daemon
+
+```bash
+sudo systemctl daemon-reload
+```
+
+Enable the services
+
+```bash
+sudo systemctl enable reco-run.service
+sudo systemctl enable reco_config_monitor.path
+sudo systemctl enable reco_config_monitor.service
 ```
 
