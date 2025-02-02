@@ -13,7 +13,7 @@ steps:
     in:
       cmd:
         run: ./reco-stop.sh
-        cwd: /home/ubuntu
+        cwd: /home/ubuntu/car-ops/pypyr
         stdout: /reco/log/reco-stop.log
         stderr: /reco/log/reco-stop.log
 

@@ -5,7 +5,7 @@ LOCKFILE="/reco/run/reco_config_monitor.lock"
 # Check if the lock file exists
 if [ -f "$LOCKFILE" ]; then
     /usr/local/bin/logger.sh "Script already executed. Remove /reco/run/reco_config_monitor.lock to run ReCo config service." "error"
-   exit 0
+    exit 0
 fi
 
 # Check if something is mounted at /media/RECO_CONFIG
@@ -14,6 +14,7 @@ if mountpoint -q /media/RECO_CONFIG; then
     touch "$LOCKFILE"
     /usr/local/bin/logger.sh "Config script started running. Please wait for success message" "info"
     # Run the pipeline
+    cp /media/RECO_CONFIG/pipeline.yaml /home/ubuntu/car-ops/pypyr/pipeline.yaml
     cd /home/ubuntu/car-ops/pypyr
     pypyr default
 else
