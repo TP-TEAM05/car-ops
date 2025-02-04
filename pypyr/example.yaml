@@ -35,13 +35,10 @@ steps:
         stdout: /reco/log/colcon-build.log
         stderr: /reco/log/colcon-build.log
 
-  - name: pypyr.steps.cmd
+  - name: pypyr.steps.filewrite
     comment: "Write config udp_client_config"
     in:
-      cmd:
-        run: >
-          echo "{IP}" > /home/ubuntu/ros2_ws/src/car_to_backend/src/udp_client_config &&
-          echo "{PORT}" >> /home/ubuntu/ros2_ws/src/car_to_backend/src/udp_client_config
-        cwd: /home/ubuntu
-        stdout: /reco/log/config-write.log
-        stderr: /reco/log/config-write.log
+      fileWrite:
+        path: /home/ubuntu/ros2_ws/src/car_to_backend/src/udp_client_config
+        append: False
+        payload: "{IP}\n{PORT}"
