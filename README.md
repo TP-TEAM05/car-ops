@@ -1,7 +1,7 @@
 # CarOps
 Repository containing scripts that runs on the car controller - Raspberry Pi
 
-## Prerequisities
+## Prerequisities
 - Raspberry Pi 4 is required
 - Ubuntu 22.04 is currently only supported version
 - ROS2 Humble is currently only supported version
@@ -124,14 +124,18 @@ sudo cp ~/car-ops/99-serial.rules /etc/udev/rules.d/
 - Install pypyr and sentry-sdk
 
 ```bash
-sudo apt install python3-pip
+sudo apt install python3-pip -y
 sudo pip3 install pypyr
 sudo pip3 install sentry-sdk
 ```
 
-### Systemd setup
+### Systemd setup
 
 Copy the service files to `/etc/systemd/system/`
+
+```bash
+sudo cp ~/car-ops/systemd/* /etc/systemd/system
+```
 
 Restart the systemd daemon
 
