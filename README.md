@@ -48,8 +48,8 @@ sudo chmod 600 ~/.ssh/id_ed25519.pub
 
 ```bash
 sudo groupadd usbmount
-sudo usermod -aG usbmount $user
-sudo usermod -aG dialout $user
+sudo usermod -aG usbmount $USER
+sudo usermod -aG dialout $USER
 ```
 
 - Add following lines to `/etc/sudoers` file
