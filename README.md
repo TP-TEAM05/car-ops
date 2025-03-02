@@ -151,3 +151,6 @@ sudo systemctl enable reco_config_monitor.path
 sudo systemctl enable reco_config_monitor.service
 ```
 
+### Setup ROS2
+
+[Installation Guide](https://github.com/ReCoFIIT/ros2_ws/blob/master/README.md)
