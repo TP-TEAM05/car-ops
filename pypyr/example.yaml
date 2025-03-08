@@ -3,17 +3,19 @@
 
 steps:
   - name: pypyr.steps.set
-    comment: "Set IP and PORT"
+    comment: "Set Configurations"
     in:
       set:
-        IP: 192.168.20.72
+        IP: 192.168.20.96
         PORT: 4040
+        VIN: C4RF117S7U0000001
+        IS_CONTROLLED_BY_USER: 1
   - name: pypyr.steps.cmd
     comment: "Stop all running ROS2 processes"
     in:
       cmd:
         run: ./reco-stop.sh
-        cwd: /home/ubuntu/car-ops/pypyr
+        cwd: /home/ubuntu/car-ops/ros2
         stdout: /reco/log/reco-stop.log
         stderr: /reco/log/reco-stop.log
 
@@ -41,4 +43,4 @@ steps:
       fileWrite:
         path: /home/ubuntu/ros2_ws/src/car_to_backend/src/udp_client_config
         append: False
-        payload: "{IP}\n{PORT}"
+        payload: "{IP}\n{PORT}\n{VIN}\n{IS_CONTROLLED_BY_USER}"
