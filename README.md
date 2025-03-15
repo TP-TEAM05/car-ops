@@ -50,6 +50,7 @@ sudo chmod 600 ~/.ssh/id_ed25519.pub
 sudo groupadd usbmount
 sudo usermod -aG usbmount $USER
 sudo usermod -aG dialout $USER
+sudo usermod -aG tty $USER
 ```
 
 - Add following lines to `/etc/sudoers` file

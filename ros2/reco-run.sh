@@ -36,6 +36,10 @@ if [ "$verbose" -eq 1 ]; then
     /opt/ros/humble/bin/ros2 run car_to_backend udp_sub &
     echo "[ROS2] udp_sub --> started"
 
+    # Start udp_pub
+    /opt/ros/humble/bin/ros2 run car_to_backend udp_pub &
+    echo "[ROS2] udp_pub --> started"
+
     # Start rpi_controller_pid.py
     python3 /home/ubuntu/rpi_controller_pid.py &
     echo "[ROS2] rpi_controller_pid.py --> started"
@@ -53,6 +57,10 @@ else
     /opt/ros/humble/bin/ros2 run car_to_backend udp_sub \
         1>/dev/null 2> >(log_errors "udp_sub") &
     echo "[ROS2] udp_sub --> started"
+
+    /opt/ros/humble/bin/ros2 run car_to_backend udp_pub \
+        1>/dev/null 2> >(log_errors "udp_pub") &
+    echo "[ROS2] udp_pub --> started"
 
     python3 /home/ubuntu/rpi_controller_pid.py \
         1>/dev/null 2> >(log_errors "rpi_controller_pid.py") &

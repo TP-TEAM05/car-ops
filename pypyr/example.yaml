@@ -6,10 +6,10 @@ steps:
     comment: "Set Configurations"
     in:
       set:
-        IP: 192.168.20.96
+        IP: 192.168.20.239
         PORT: 4040
-        VIN: C4RF117S7U0000001
-        IS_CONTROLLED_BY_USER: 1
+        VIN: C4RF117S7U0000002
+        IS_CONTROLLED_BY_USER: 0
   - name: pypyr.steps.cmd
     comment: "Stop all running ROS2 processes"
     in:
@@ -44,3 +44,11 @@ steps:
         path: /home/ubuntu/ros2_ws/src/car_to_backend/src/udp_client_config
         append: False
         payload: "{IP}\n{PORT}\n{VIN}\n{IS_CONTROLLED_BY_USER}"
+
+  - name: pypyr.steps.filewrite
+    comment: "Write config udp_server_config"
+    in:
+      fileWrite:
+        path: /home/ubuntu/ros2_ws/src/car_to_backend/src/udp_server_config
+        append: False
+        payload: "{IP}\n{PORT}"
