@@ -21,6 +21,10 @@ log_errors() {
 
 verbose=1 # Default: not verbose
 
+# Set and export the ROS_DOMAIN_ID using the value from "id"
+export ROS_DOMAIN_ID=2
+echo "[ROS2] Using ROS_DOMAIN_ID=${ROS_DOMAIN_ID}" >>/reco/log/reco-run.log
+
 echo "Starting ROS2 nodes at: $(date)" >>/reco/log/reco-run.log
 
 if [ "$verbose" -eq 1 ]; then
