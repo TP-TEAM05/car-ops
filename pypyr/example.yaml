@@ -10,6 +10,8 @@ steps:
         PORT: 4040
         VIN: C4RF117S7U0000002
         IS_CONTROLLED_BY_USER: 0
+        SERVER_IP: 0.0.0.0
+        SERVER_PORT: 12345
   - name: pypyr.steps.cmd
     comment: "Stop all running ROS2 processes"
     in:
@@ -51,4 +53,4 @@ steps:
       fileWrite:
         path: /home/ubuntu/ros2_ws/src/car_to_backend/src/udp_server_config
         append: False
-        payload: "{IP}\n{PORT}"
+        payload: "{SERVER_IP}\n{SERVER_PORT}"
