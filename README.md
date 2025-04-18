@@ -77,6 +77,7 @@ Scripts should be located in `/usr/local/bin`
 
 `mount_reco_config.sh` - contains script to automount flash_drive RECO_CONFIG
 `logger.sh` - contains logging script
+`reco_config_monitor.sh` - contains script for monitoring the flash drive RECO_CONFIG and execution of pipeline
 
 ```bash
 sudo cp ~/car-ops/mount_reco_config.sh /usr/local/bin/
@@ -86,6 +87,11 @@ sudo chmod +x /usr/local/bin/mount_reco_config.sh
 ```bash
 sudo cp ~/car-ops/logger.sh /usr/local/bin/
 sudo chmod +x /usr/local/bin/logger.sh
+```
+
+```bash
+sudo cp ~/car-ops/reco_config_monitor.sh /usr/local/bin/
+sudo chmod +x /usr/local/bin/reco_config_monitor.sh
 ```
 
 ### UDEV Rules
