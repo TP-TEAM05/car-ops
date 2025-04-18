@@ -6,7 +6,8 @@ steps:
     comment: "Set Configurations"
     in:
       set:
-        IP: 192.168.20.239
+        ROS_DOMAIN_ID: 2
+        IP: 192.168.20.96
         PORT: 4040
         VIN: C4RF117S7U0000002
         IS_CONTROLLED_BY_USER: 0
@@ -54,3 +55,11 @@ steps:
         path: /home/ubuntu/ros2_ws/src/car_to_backend/src/udp_server_config
         append: False
         payload: "{SERVER_IP}\n{SERVER_PORT}"
+  
+  - name: pypyr.steps.filewrite
+    comment: "Set the ROS_DOMAIN_ID"
+    in:
+      fileWrite:
+        path: /home/ubuntu/ros_domain_id
+        append: False
+        payload: "{ROS_DOMAIN_ID}"
