@@ -22,7 +22,16 @@ log_errors() {
 verbose=1 # Default: not verbose
 
 # Set and export the ROS_DOMAIN_ID using the value from "id"
-export ROS_DOMAIN_ID=2
+
+# First try to read from /home/ubuntu/ros_domain_id
+if [ -f /home/ubuntu/ros_domain_id ]; then
+    ROS_DOMAIN_ID=$(cat /home/ubuntu/ros_domain_id)
+else
+    # If the file does not exist, use the default value
+    ROS_DOMAIN_ID=2
+fi
+
+export ROS_DOMAIN_ID
 echo "[ROS2] Using ROS_DOMAIN_ID=${ROS_DOMAIN_ID}" >>/reco/log/reco-run.log
 
 echo "Starting ROS2 nodes at: $(date)" >>/reco/log/reco-run.log
