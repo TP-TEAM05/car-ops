@@ -41,7 +41,7 @@ sudo chmod 600 ~/.ssh/id_ed25519.pub
 
 ### Repository Clone
 - Go to home directory using `cd ~`
-- Clone this repository using `git clone git@github.com:ReCoFIIT/car-ops.git`
+- Clone this repository using `git clone git@github.com:TP-TEAM05/car-ops.git`
 
 
 ### User Setup
@@ -160,4 +160,4 @@ sudo systemctl enable reco_config_monitor.service
 
 ### Setup ROS2
 
-[Installation Guide](https://github.com/ReCoFIIT/ros2_ws/blob/master/README.md)
+[Installation Guide](https://github.com/TP-TEAM05/ros2_ws/blob/master/README.md)
